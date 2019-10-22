@@ -1,6 +1,9 @@
 import React from 'react';
 import './App.css';
 
+const creds = require('./ibm.json')
+const { API_Key, URL } = creds
+
 class App extends React.Component {
 
   state = {
@@ -19,9 +22,27 @@ class App extends React.Component {
     this.setState({
       render: this.state.words
       })
+
   }
 
+  // fetchTone = (text) => {
+  //   fetch(`${URL}/v3/tone?version=2017-09-21`, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Access-Control-Allow-Headers': "access-control-allow-origin",
+  //       'Content-Type': 'application/json',
+  //       'Accept': 'application/json',
+  //       'Access-Control-Allow-Origin': '*',
+  //       'Access-Control-Allow-Credentials': 'true',
+  //       'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT',
+  //     }
+  //     })
+  //     .then(res => res.json())
+  //     .then(console.log)
+  // }
+
   render() {
+    this.fetchTone()
     return (
     <div className="App">
       <h1>IBM Watson Tone Analyzer API</h1>
