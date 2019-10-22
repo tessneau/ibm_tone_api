@@ -1,26 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
+class App extends React.Component {
+
+  state = {
+    words: "",
+    render: ""
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+      })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.setState({
+      render: this.state.words
+      })
+  }
+
+  render() {
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>IBM Watson Tone Analyzer API</h1>
+
+      <form onSubmit={this.handleSubmit}>
+        <label>
+        words:
+          <input type="text" name="words" value={this.state.words} onChange={this.handleChange}/>
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+      <p>{this.state.render}</p>
     </div>
-  );
+    );
+  }
 }
 
 export default App;
